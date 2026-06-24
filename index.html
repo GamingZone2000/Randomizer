@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Arpoja</title>
+</head>
+<body>
+
+    <h1 style="text-align: center ; font-size: 80px;">🎲 Arpoja</h1>
+  <p style="text-align: center;">Muista pitää vaihtoehdot pilkuilla erotettuina</p>
+<div style="text-align: center;">
+  <input id="vaihtoehdot" style="width: 300px;"
+placeholder="Mitä haluat arpoa?">
+<br><br>
+<button onclick="arvo()" style="font-size: 24px; padding: 12px 30px; background-color: #4CAF50; color: white;border: none; border-radius:  10px; cursor: pointer;">Arvo!</button>
+<p id="tulos" style="font-size: 32px; font-weight: bold; color:#4CAF50;"></p>
+ 
+</div>
+
+<script>
+    function arvo() {
+
+    var teksti = document.getElementById("vaihtoehdot").value;
+    var lista = teksti.split(",");
+      for (var i = 0; i < lista.length; i++) { lista[i] = lista[i].trim();
+                      }
+    var tulos = document.getElementById("tulos");
+
+ var kierroksia =0;
+ var ajastin = setInterval(function () { var arvottu = lista[Math.floor(Math.random() * lista.length)]; tulos.textContent = arvottu; kierroksia = kierroksia + 1; if (kierroksia > 15) { clearInterval(ajastin); tulos.textContent ="valittu: " + arvottu;
+ }
+}, 80);
+
+
+ 
+}
+ </script>
+ 
+</body>
+</html>
