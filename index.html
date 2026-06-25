@@ -14,14 +14,23 @@
       background-color: #45a049;
       transform: scale(1.05);
     }
+    .kortti {
+      background-color: white;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
   </style>
+  <script data-goatcounter="https://samupahajoki.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
   <h1 style="text-align: center; font-size: 80px;">🎲 Arpoja</h1>
   <p style="text-align: center;">Muista pitää vaihtoehdot pilkuilla erotettuina</p>
 
-  <div style="text-align: center;">
+  <div class="kortti" style="text-align: center;">
     <input id="vaihtoehdot" style="width: 300px;" placeholder="Mitä haluat arpoa?">
     <br><br>
     <button onclick="arvo()" style="font-size: 24px; padding: 12px 30px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Arvo!</button>
