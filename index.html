@@ -30,9 +30,12 @@
   <button onclick="toggleHistoria()" id="historiaNappi" style="position: fixed; top: 10px; left: 10px; padding: 10px 16px; border: none; border-radius: 8px; background-color: white; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">📜 Historia</button>
   <div id="historiaPaneeli" style="position: fixed; top: 55px; left: 10px; display: none; background-color: white; padding: 15px; border-radius: 10px; max-width: 250px; max-height: 400px; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.2);"></div>
 
-  <button onclick="toggleKieli()" id="kieliNappi" style="position: fixed; top: 10px; right: 10px; padding: 10px 16px; border: none; border-radius: 8px; background-color: white; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">EN</button>
-  <button onclick="toggleAani()" id="aaniNappi" style="position: fixed; top: 55px; right: 10px; padding: 10px 16px; border: none; border-radius: 8px; background-color: white; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">🔊 Ääni: päällä</button>
-  <button onclick="toggleTeema()" id="teemaNappi" style="position: fixed; top: 100px;right: 10px; padding: 10px 16px; border: none; border-radius: 8px; background-color: white; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">🌙 Tumma tila</button>
+  <button onclick="toggleAsetukset()" id="asetuksetNappi" style="position: fixed; top: 10px; right: 10px; padding: 10px 14px; border: none; border-radius: 8px; background-color: white; cursor: pointer; font-size: 18px;">⚙️</button>
+  <div id="asetuksetPaneeli" style="position: fixed; top: 55px; right: 10px; display: none; flex-direction: column; gap: 8px; background-color: white; padding: 12px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+    <button onclick="toggleKieli()" id="kieliNappi" style="padding: 10px 16px; border: none; border-radius: 8px; background-color: #eee; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">EN</button>
+    <button onclick="toggleAani()" id="aaniNappi" style="padding: 10px 16px; border: none; border-radius: 8px; background-color: #eee; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">🔊 Ääni: päällä</button>
+    <button onclick="toggleTeema()" id="teemaNappi" style="padding: 10px 16px; border: none; border-radius: 8px; background-color: #eee; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">🌙 Tumma tila</button>
+  </div>
 
   <h1 id="otsikko" style="text-align: center; font-size: 80px;">🎲 Arpoja</h1>
   <p id="ohjeTeksti" style="text-align: center;">Muista pitää vaihtoehdot pilkuilla erotettuina</p>
@@ -279,6 +282,11 @@
     function toggleTeema() {
         document.body.classList.toggle("tumma");
         localStorage.setItem("teema", document.body.classList.contains("tumma") ? "tumma" : "vaalea");
+    }
+
+    function toggleAsetukset() {
+      var p = document.getElementById("asetuksetPaneeli");
+      p.style.display = (p.style.display === "none") ? "flex" : "none";
     }
 
     function tallennaLista() {
