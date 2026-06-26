@@ -39,6 +39,7 @@
     <button onclick="toggleKieli()" id="kieliNappi" style="padding: 10px 16px; border: none; border-radius: 8px; background-color: #eee; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">EN</button>
     <button onclick="toggleAani()" id="aaniNappi" style="padding: 10px 16px; border: none; border-radius: 8px; background-color: #eee; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">🔊 Ääni: päällä</button>
     <button onclick="toggleTeema()" id="teemaNappi" style="padding: 10px 16px; border: none; border-radius: 8px; background-color: #eee; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold;">🌙 Tumma tila</button>
+    <button onclick="jaa()" id="jaaNappi" title="Jaa / Share" style="padding: 10px 16px; border: none; border-radius: 8px; background-color: #eee; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold; ">🔗Jaa</button>
   </div>
 
   <h1 id="otsikko" style="text-align: center; font-size: 80px;">🎲 Arpoja</h1>
@@ -81,6 +82,7 @@
         historia: "📜 Historia",
         tyhjenna: "🗑️ Tyhjennä",
         tummaTila: "🌙 Tumma tila",
+        linkkiKopioitu: "Linkki kopioitu!",
         aaniPaalla: "🔊 Ääni: päällä",
         aaniPois: "🔇 Ääni: pois",
         nimiKysymys: "Anna listalle nimi:",
@@ -96,6 +98,7 @@
         historia: "📜 History",
         tyhjenna: "🗑️ Clear",
         tummaTila: "🌙 Dark mode",
+        linkkiKopioitu: "Link copied!",
         aaniPaalla: "🔊 Sound: on",
         aaniPois: "🔇 Sound: off",
         nimiKysymys: "Enter a name for the list:",
@@ -111,6 +114,7 @@
         historia: "📜 Historik",
         tyhjenna: "🗑️ Rensa",
         tummaTila: "🌙 Mörkt läge",
+        linkkiKopioitu: "Länk kopierad!",
         aaniPaalla: "🔊 Ljud: på",
         aaniPois: "🔇 Ljud: av",
         nimiKysymys: "Ge listan ett namn:",
@@ -126,6 +130,7 @@
         historia: "📜 Historique",
         tyhjenna: "🗑️ Effacer",
         tummaTila: "🌙 Mode sombre",
+        linkkiKopioitu: "Lien copié !",
         aaniPaalla: "🔊 Son : activé",
         aaniPois: "🔇 Son : désactivé",
         nimiKysymys: "Donnez un nom à la liste :",
@@ -141,6 +146,7 @@
         historia: "📜 Historial",
         tyhjenna: "🗑️ Borrar",
         tummaTila: "🌙 Modo oscuro",
+        linkkiKopioitu: "¡Enlace copiado!",
         aaniPaalla: "🔊 Sonido: activado",
         aaniPois: "🔇 Sonido: desactivado",
         nimiKysymys: "Dale un nombre a la lista:",
@@ -156,6 +162,7 @@
         historia: "📜 Verlauf",
         tyhjenna: "🗑️ Löschen",
         tummaTila: "🌙 Dunkelmodus",
+        linkkiKopioitu: "Link kopiert!",
         aaniPaalla: "🔊 Ton: an",
         aaniPois: "🔇 Ton: aus",
         nimiKysymys: "Gib der Liste einen Namen:",
@@ -291,6 +298,17 @@
     function toggleAsetukset() {
       var p = document.getElementById("asetuksetPaneeli");
       p.style.display = (p.style.display === "none") ? "flex" : "none";
+    }
+    function jaa() {
+var linkki = "https://gamingzone2000.github.io/Randomizer/"; 
+if (navigator.share) {
+ navigator.share({ url: linkki});
+} else {
+    navigator.clipboard.writeText(linkki);
+    alert(kaannokset[kieli].linkkiKopioitu);
+}
+
+
     }
 
     function tallennaLista() {
