@@ -55,6 +55,7 @@
     var aaniPaalla = true;
     var listat = {};
     var kieli = "en";
+    var viimeinenVoittaja = null;
 
     var kaannokset = {
       fi: {
@@ -91,9 +92,13 @@
       var teksti = document.getElementById("vaihtoehdot").value;
       var raaka = teksti.split(",");
       var lista = [];
-      for (var i = 0; i < raaka.length; i++) {
-        if (raaka[i].trim() !== "") lista.push(raaka[i].trim());
+           for (var i = 0; i < raaka.length; i++) {
+        var vaihtoehto = raaka[i].trim();
+        if (vaihtoehto !== "" && lista.indexOf(vaihtoehto) === -1) {
+          lista.push(vaihtoehto);
+        }
       }
+      
       var ctx = document.getElementById("pyora").getContext("2d");
       ctx.clearRect(0, 0, 300, 300);
       if (lista.length === 0) return [];
@@ -140,6 +145,7 @@
 
       setTimeout(function () {
         var voittaja = lista[voittajaIndex];
+        viimeinenVoittaja = voittaja;
         document.getElementById("tulos").textContent = kaannokset[kieli].valittu + voittaja;
         historiaLista.unshift({ voittaja: voittaja, vaihtoehdot: teksti });
         naytaHistoria();
@@ -212,6 +218,7 @@
       var html = "";
       for (var nimi in listat) {
         html += "<button onclick=\"lataaLista('" + nimi + "')\" style='margin:5px; padding:8px 14px; border:none; border-radius:8px; background:white; cursor:pointer; font-family:Poppins;'>" + nimi + "</button>";
+    html += "<button onclick=\"poistaLista('" + nimi + "')\" style='margin-right:5px; padding:8px 10px; border:none; border-radius:8px; background:#e74c3c; color:white; cursor:pointer;'>✕</button>";
       }
       alue.innerHTML = html;
     }
@@ -227,7 +234,11 @@
       localStorage.setItem("kieli", kieli);
       paivitaKieli();
     }
-
+  function poistaLista(nimi) {
+      delete listat[nimi];
+      localStorage.setItem("listat", JSON.stringify(listat));
+      naytaListat();
+  }
     function paivitaKieli() {
         
       var k = kaannokset[kieli];
@@ -239,6 +250,11 @@
       document.getElementById("historiaNappi").textContent = k.historia;
       document.getElementById("aaniNappi").textContent = aaniPaalla ? k.aaniPaalla : k.aaniPois;
       document.getElementById("kieliNappi").textContent = (kieli === "fi") ? "EN" : "FI";
+      if (viimeinenVoittaja) {
+     document.getElementById("tulos").textContent = kaannokset[kieli].valittu + viimeinenVoittaja;
+
+
+      }
       naytaHistoria();
     }
 
